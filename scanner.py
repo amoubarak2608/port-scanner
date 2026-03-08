@@ -1,5 +1,26 @@
 # import the socket library
 import socket
+# import the time library
+import time
+
+# common ports and their service names
+common_ports = {
+    20: "FTP Data",
+    21: "FTP Control",
+    22: "SSH",
+    23: "Telnet",
+    25: "SMTP",
+    53: "DNS",
+    80: "HTTP",
+    110: "POP3",
+    143: "IMAP",
+    443: "HTTPS",
+    3306: "MySQL",
+    3389: "RDP",
+    5900: "VNC",
+    6379: "Redis",
+    8080: "HTTP Proxy"
+}
 
 # ask the user for a target hostname and store it in a variable called target
 target = input("Enter the target hostname: ")
@@ -27,6 +48,10 @@ def scan_port(host, port):
 
 # loop through ports 1 to 101
     # inside the loop, call scan_port and print if the port is open
+start_time = time.time()
 for port in range(1, 101):
     if scan_port(ip, port):
-        print("Port " + str(port) + " is open.")
+        service = common_ports.get(port, "Unknown Service")
+        print("Port " + str(port) + " is open. Service: " + service)
+end_time = time.time()
+print("Scan completed in " + str(round(end_time - start_time)) + " seconds.")
