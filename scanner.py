@@ -12,7 +12,7 @@ print("Target: " + target)
 print("IP Address: " + ip)
 
 # create a function called scan_port that takes host and port as parameters
-    # this is where the port checking logic will go, leave it empty for now with just the word: pass
+    # this is where the port checking logic will go
 def scan_port(host, port):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
